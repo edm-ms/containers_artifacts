@@ -1,0 +1,50 @@
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - uses: azure/docker-login@v1
+      with:
+        login-server: registrymdf7461.azurecr.io
+        username: ${{ secrets.acr_registrymdf7461_username }}
+        password: ${{ secrets.acr_registrymdf7461_password }}
+    
+    - name: Build and push image to ACR
+      id: build-image
+      run: |
+        docker build "$GITHUB_WORKSPACE/.devcontainer" -f  ".devcontainer/Dockerfile" -t registrymdf7461.azurecr.io/aksprodwustrips:${{ github.sha }} --label dockerfile-path=.devcontainer/Dockerfile
+        docker push registrymdf7461.azurecr.io/aksprodwustrips:${{ github.sha }}
+    
+    - uses: azure/k8s-set-context@v1
+      with:
+         kubeconfig: ${{ secrets.aks_aksprodwustrips_kubeConfig }}
+      id: login
+    
+    - name: Create namespace
+      run: |
+        namespacePresent=`kubectl get namespace | grep aks-prod-wus-trips930c | wc -l`
+        if [ $namespacePresent -eq 0 ]
+        then
+            echo `kubectl create namespace aks-prod-wus-trips930c`
+        fi
+
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: aks-prod-wus-trips930c
+        container-registry-url: registrymdf7461.azurecr.io
+        container-registry-username: ${{ secrets.acr_registrymdf7461_username }}
+        container-registry-password: ${{ secrets.acr_registrymdf7461_password }}
+        secret-name: aksprodwustrdockerauth
+       
+    - uses: azure/k8s-deploy@v1.2
+      with:
+        namespace: aks-prod-wus-trips930c
+        manifests: |
+          manifests/deployment.yml
+          manifests/service.yml
+        images: |
+          registrymdf7461.azurecr.io/aksprodwustrips:${{ github.sha }}
+        imagepullsecrets: |
+          aksprodwustrdockerauth
