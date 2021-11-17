@@ -1,0 +1,16 @@
+export CLUSTER_ID=$(az aks show --resource-group teamResources --name aks-prod-wus-trips -o tsv --query id)
+
+#API dev user
+az role assignment create --assignee "apidev@msftopenhack7028ops.onmicrosoft.com" --role "Azure Kubernetes Service Cluster User Role" --scope $CLUSTER_ID
+
+az role assignment create --assignee "apidev@msftopenhack7028ops.onmicrosoft.com" --role "Azure Kubernetes Service RBAC Writer" --scope "$CLUSTER_ID/namespaces/api"
+az role assignment create --assignee "apidev@msftopenhack7028ops.onmicrosoft.com" --role "Azure Kubernetes Service RBAC Reader" --scope "$CLUSTER_ID/namespaces/api"
+
+az role assignment create --assignee "apidev@msftopenhack7028ops.onmicrosoft.com" --role "Azure Kubernetes Service RBAC Reader" --scope "$CLUSTER_ID/namespaces/web"
+
+#WEB dev user
+az role assignment create --assignee "webdev@msftopenhack7028ops.onmicrosoft.com" --role "Azure Kubernetes Service Cluster User Role" --scope $CLUSTER_ID
+
+az role assignment create --assignee "webdev@msftopenhack7028ops.onmicrosoft.com" --role "Azure Kubernetes Service RBAC Admin" --scope "$CLUSTER_ID/namespaces/web"
+
+az role assignment create --assignee "webdev@msftopenhack7028ops.onmicrosoft.com" --role "Azure Kubernetes Service RBAC Reader" --scope "$CLUSTER_ID/namespaces/api"        
