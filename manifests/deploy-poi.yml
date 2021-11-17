@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: "poi"
-          image: "registrymdf7461.azurecr.io/poi"
+          image: "registrymdf7461.azurecr.io/poi:1.0"
           ports:
           - containerPort: 80
