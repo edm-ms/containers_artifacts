@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: "userprofile"
-          image: "registrymdf7461.azurecr.io/userprofile"
+          image: "registrymdf7461.azurecr.io/userprofile:1.0"
           ports:
           - containerPort: 80

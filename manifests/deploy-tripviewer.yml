@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: "tripviewer"
-          image: "registrymdf7461.azurecr.io/tripviewer"
+          image: "registrymdf7461.azurecr.io/tripviewer:1.0"
           ports:
           - containerPort: 80

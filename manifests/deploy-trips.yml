@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: "trips"
-          image: "registrymdf7461.azurecr.io/trips"
+          image: "registrymdf7461.azurecr.io/trips:1.0"
           ports:
           - containerPort: 80
