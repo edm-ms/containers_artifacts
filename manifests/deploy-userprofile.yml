@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "userprofile"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "userprofile"
+  template:
+    metadata:
+      labels:
+        app: "userprofile"
+    spec:
+      containers:
+        - name: "userprofile"
+          image: "registrymdf7461.azurecr.io/userprofile"
+          ports:
+          - containerPort: 80
