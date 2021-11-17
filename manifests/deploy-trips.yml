@@ -17,3 +17,9 @@ spec:
           image: "registrymdf7461.azurecr.io/trips:1.0"
           ports:
           - containerPort: 80
+          env:
+          - name: SQL_PASSWORD
+            valueFrom: 
+              secretKeyRef: 
+                name: mysqlpwd
+                key: password
