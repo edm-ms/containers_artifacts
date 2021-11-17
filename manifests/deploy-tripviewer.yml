@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "tripviewer"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "tripviewer"
+  template:
+    metadata:
+      labels:
+        app: "tripviewer"
+    spec:
+      containers:
+        - name: "tripviewer"
+          image: "registrymdf7461.azurecr.io/tripviewer"
+          ports:
+          - containerPort: 80
