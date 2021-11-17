@@ -1,0 +1,29 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: web-user-access-rolebinding
+  namespace: web
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: "Azure Kubernetes Service RBAC Admin"
+subjects:
+- kind: User
+  namespace: web
+  #name: groupObjectId
+  name: "e7529a21-c7f3-4250-9fdc-cdce2063bdd5"
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: web-user-access-rolebinding
+  namespace: api
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: "Azure Kubernetes Service RBAC Reader"
+subjects:
+- kind: User
+  namespace: api
+  #name: groupObjectId
+  name: "e7529a21-c7f3-4250-9fdc-cdce2063bdd5"
