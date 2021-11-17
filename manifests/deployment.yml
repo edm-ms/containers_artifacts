@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "aksprodwustrips-26a6"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "aksprodwustrips-26a6"
+  template:
+    metadata:
+      labels:
+        app: "aksprodwustrips-26a6"
+    spec:
+      containers:
+        - name: "aksprodwustrips-26a6"
+          image: "registrymdf7461.azurecr.io/aksprodwustrips"
+          ports:
+          - containerPort: 80
