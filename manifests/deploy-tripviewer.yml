@@ -17,3 +17,8 @@ spec:
           image: "registrymdf7461.azurecr.io/tripviewer:1.0"
           ports:
           - containerPort: 80
+          env: 
+          - name: TRIPS_API_ENDPOINT
+            value: "trips"
+          - name: USERPROFILE_API_ENDPOINT
+            value: "userprofile"
