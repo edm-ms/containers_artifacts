@@ -30,3 +30,7 @@ spec:
         backend:
           serviceName: user-java
           servicePort: 80
+      - path: /api/user-java/healthcheck
+        backend:
+          serviceName: user-java
+          servicePort: 80          

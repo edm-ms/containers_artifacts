@@ -30,3 +30,7 @@ spec:
         backend:
           serviceName: poi
           servicePort: 80
+      - path: /api/poi/healthcheck
+        backend:
+          serviceName: poi
+          servicePort: 80    

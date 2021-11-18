@@ -29,4 +29,8 @@ spec:
       - path: /api/user
         backend:
           serviceName: userprofile
-          servicePort: 80        
+          servicePort: 80
+      - path: /api/user/healthcheck
+        backend:
+          serviceName: userprofile
+          servicePort: 80          
