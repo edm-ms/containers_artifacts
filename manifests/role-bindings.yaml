@@ -1,0 +1,57 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: web-admin
+  namespace: web
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: edit
+subjects:
+- kind: Group
+  namespace: web
+  name: "8490a201-1609-4d19-9b55-dfbcab2c5388"
+
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: api-reader
+  namespace: api
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view
+subjects:
+- kind: Group
+  namespace: api
+  name: "8490a201-1609-4d19-9b55-dfbcab2c5388"
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: api-admin
+  namespace: api
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: edit
+subjects:
+- kind: Group
+  namespace: api
+  name: "259c5596-53e7-43b0-a4af-e098f01ff6af"
+
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: web-reader
+  namespace: web
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view
+subjects:
+- kind: Group
+  namespace: web
+  name: "259c5596-53e7-43b0-a4af-e098f01ff6af"
