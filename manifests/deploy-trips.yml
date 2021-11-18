@@ -22,6 +22,12 @@ spec:
           - name: secrets-store01-inline
             mountPath: "/secrets"
             readOnly: true
+          env:
+          - name: SQL_PASSWORD
+            valueFrom: 
+              secretKeyRef: 
+                name: fromvksecrets
+                key: sqlpasswordkey
       volumes:
       - name: secrets-store01-inline
         csi:
