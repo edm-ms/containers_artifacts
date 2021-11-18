@@ -14,3 +14,19 @@ spec:
       name: http
     selector:
         app: "poi"
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: poi
+  namespace: "api"
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /api/poi
+        backend:
+          serviceName: poi
+          servicePort: 80

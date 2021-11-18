@@ -14,3 +14,19 @@ spec:
       name: http
     selector:
         app: "user-java"
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: user-java
+  namespace: "api"
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /api/user-java
+        backend:
+          serviceName: user-java
+          servicePort: 80

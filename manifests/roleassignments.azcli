@@ -14,3 +14,5 @@ az role assignment create --assignee "webdev@msftopenhack7028ops.onmicrosoft.com
 az role assignment create --assignee "webdev@msftopenhack7028ops.onmicrosoft.com" --role "Azure Kubernetes Service RBAC Admin" --scope "$CLUSTER_ID/namespaces/web"
 
 az role assignment create --assignee "webdev@msftopenhack7028ops.onmicrosoft.com" --role "Azure Kubernetes Service RBAC Reader" --scope "$CLUSTER_ID/namespaces/api"        
+
+
